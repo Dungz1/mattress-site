@@ -1,0 +1,45 @@
+{
+  "project": "$MATTRESS",
+  "ticker": "MATTRESS",
+  "tagline": "The money sleeps under you.",
+  "site": "https://themattress.fun",
+  "launch": {
+    "launchpad": "FOBO",
+    "launchUrl": "https://fobo.fun",
+    "status": "announced",
+    "contractAddress": null,
+    "contractAddressNote": "published first on X at launch, then mirrored here"
+  },
+  "mechanics": {
+    "floor": {
+      "shareBps": 150,
+      "description": "1.5% of every buy and sell puffs the floor pool; it rises with volume and never deflates",
+      "backing": "floor pool always holds enough to buy back the entire circulating supply at floor price",
+      "custody": "immutable FOBO hook - no LP tokens, no withdraw function, no admin key"
+    },
+    "sniperTax": {
+      "startBps": 9000,
+      "endBps": 250,
+      "durationSeconds": 60,
+      "note": "proceeds feed the floor"
+    },
+    "supply": {
+      "teamAllocation": 0,
+      "presaleAllocation": 0,
+      "release": "slow FOBO curve - approx 35% sold by $1B market cap"
+    },
+    "crossChainBuy": ["ETH", "Base", "Solana", "BTC"]
+  },
+  "dataSources": {
+    "liveChainReads": [
+      "https://ethereum-rpc.publicnode.com",
+      "https://1rpc.io/eth",
+      "https://cloudflare-eth.com"
+    ],
+    "note": "block height and gas price are read client-side from public RPCs - no server in between"
+  },
+  "risk": "Memecoin with no intrinsic value. Floor mechanics reduce liquidity risk, not market risk. Can go to zero. Not financial advice.",
+  "socials": {
+    "x": "https://x.com/search?q=%24MATTRESS&f=live"
+  }
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #0f1420; }
+  .card {
+    display: none;
+    position: relative; width: 1280px; height: 720px; overflow: hidden;
+    background: #0f1420;
+    font-family: "Fraunces", Georgia, serif; color: #f4eddd;
+    box-sizing: border-box; padding: 62px 84px;
+  }
+  .card.on { display: block; }
+  .card::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(244,237,221,0.05) 0 1px, transparent 1px 30px),
+      repeating-linear-gradient(-45deg, rgba(244,237,221,0.05) 0 1px, transparent 1px 30px);
+  }
+  .glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 55% 55% at 78% 25%, rgba(87,217,163,0.11), transparent 70%);
+  }
+  .rule { position: absolute; left: 84px; right: 84px; height: 1px; background: rgba(87,217,163,0.3); }
+  .top { top: 46px; } .bottom { bottom: 46px; }
+  .brand {
+    position: absolute; top: 58px; left: 84px;
+    font-family: "IBM Plex Mono", monospace; font-size: 16px;
+    letter-spacing: 0.3em; color: #57d9a3;
+  }
+  .links {
+    position: absolute; bottom: 58px; right: 84px;
+    font-family: "IBM Plex Mono", monospace; font-size: 15px;
+    letter-spacing: 0.14em; color: #cfc7b2;
+  }
+  .kicker {
+    font-family: "IBM Plex Mono", monospace; font-size: 15px;
+    letter-spacing: 0.3em; text-transform: uppercase; color: #57d9a3;
+    margin: 30px 0 22px;
+  }
+  h1 {
+    font-weight: 700; font-size: 62px; line-height: 1.1; letter-spacing: 0.005em;
+    margin: 0 0 26px; max-width: 24ch;
+  }
+  h1 .green { color: #57d9a3; }
+  .big-quote {
+    font-weight: 700; font-size: 54px; line-height: 1.22; max-width: 22ch;
+  }
+  .big-quote .dim { color: #9a917c; }
+  .big-quote .green { color: #57d9a3; }
+  .sub {
+    font-family: "IBM Plex Mono", monospace; font-size: 20px;
+    letter-spacing: 0.08em; color: #cfc7b2; margin-top: 26px; max-width: 52ch;
+  }
+  .rows { max-width: 860px; margin-top: 34px; }
+  .row {
+    display: flex; gap: 20px; align-items: baseline;
+    padding: 15px 0; border-top: 1px solid rgba(244,237,221,0.12);
+  }
+  .row:last-child { border-bottom: 1px solid rgba(244,237,221,0.12); }
+  .row .mark { font-family: "IBM Plex Mono", monospace; font-size: 19px; min-width: 44px; }
+  .row .txt { font-family: "IBM Plex Mono", monospace; font-size: 21px; color: #cfc7b2; }
+  .row .txt b { color: #f4eddd; font-weight: 500; }
+
+  /* mattress art */
+  .bed-art { position: absolute; right: 90px; top: 50%; transform: translateY(-50%); width: 330px; height: 210px; }
+  .bed-art.small { width: 260px; height: 170px; right: 110px; }
+  .mattress {
+    position: absolute; left: 0; right: 0; bottom: 28px; height: 108px;
+    background: linear-gradient(180deg, #f4eddd, #d9cfb8);
+    border-radius: 30px;
+    box-shadow: 0 22px 46px rgba(0,0,0,0.5), inset 0 -13px 24px rgba(15,20,32,0.18);
+  }
+  .mattress::before {
+    content: ""; position: absolute; inset: 12px;
+    border: 2.5px dashed rgba(15,20,32,0.35); border-radius: 20px;
+  }
+  .pillow {
+    position: absolute; left: 28px; bottom: 100px; width: 104px; height: 52px;
+    background: linear-gradient(180deg, #fffaf0, #e8dfc8);
+    border-radius: 22px; transform: rotate(-4deg);
+    box-shadow: 0 9px 20px rgba(0,0,0,0.35);
+  }
+  .bill {
+    position: absolute; width: 78px; height: 41px; border-radius: 7px;
+    background: linear-gradient(135deg, #57d9a3, #2e9e73);
+    border: 2px solid rgba(244,237,221,0.55);
+    box-shadow: 0 9px 20px rgba(0,0,0,0.4);
+  }
+  .bill::after {
+    content: "$"; position: absolute; inset: 0; display: flex;
+    align-items: center; justify-content: center;
+    color: #0f1420; font-family: "IBM Plex Mono", monospace;
+    font-size: 20px; font-weight: 700;
+  }
+  .b1 { right: 12px; bottom: 118px; transform: rotate(14deg); }
+  .b2 { right: 56px; bottom: 138px; transform: rotate(-10deg); }
+
+  .pills { display: flex; gap: 14px; margin-top: 40px; }
+  .pill {
+    font-family: "IBM Plex Mono", monospace; font-size: 17px; letter-spacing: 0.08em;
+    border-radius: 999px; padding: 12px 26px;
+  }
+  .p-solid { background: #57d9a3; color: #0f1420; }
+  .p-ghost { border: 1px solid rgba(87,217,163,0.55); color: #57d9a3; }
+</style>
+</head>
+<body>
+
+<!-- CARD 1: coin this -->
+<div class="card" id="card1">
+  <div class="glow"></div>
+  <div class="rule top"></div><div class="rule bottom"></div>
+  <div class="brand">$MATTRESS · COIN THIS</div>
+  <div class="links">themattress.fun</div>
+  <div class="kicker">🛏️ @fobodotfun — coin this</div>
+  <h1>You're never the<br><span class="green">exit liquidity.</span><br>There's a mattress.</h1>
+  <div class="sub">Every trade puffs up a floor of cash beneath the price —<br>it can always buy back everything we hold.</div>
+  <div class="bed-art">
+    <div class="mattress"></div><div class="pillow"></div>
+    <div class="bill b1"></div><div class="bill b2"></div>
+  </div>
+</div>
+
+<!-- CARD 2: story -->
+<div class="card" id="card2">
+  <div class="glow"></div>
+  <div class="rule top"></div><div class="rule bottom"></div>
+  <div class="brand">$MATTRESS · THE STORY</div>
+  <div class="links">themattress.fun</div>
+  <div class="kicker">Every chart deserves a soft landing</div>
+  <div class="big-quote">
+    <span class="dim">Grandma kept cash<br>under the mattress.</span><br><br>
+    <span class="green">FOBO put one under<br>the chart.</span>
+  </div>
+  <div class="bed-art small">
+    <div class="mattress"></div><div class="pillow"></div>
+    <div class="bill b1"></div><div class="bill b2"></div>
+  </div>
+</div>
+
+<!-- CARD 3: mechanics -->
+<div class="card" id="card3">
+  <div class="glow"></div>
+  <div class="rule top"></div><div class="rule bottom"></div>
+  <div class="brand">$MATTRESS · MECHANICS</div>
+  <div class="links">themattress.fun</div>
+  <div class="kicker">How the mattress works</div>
+  <h1>Four rules.<br><span class="green">No fine print.</span></h1>
+  <div class="rows">
+    <div class="row"><div class="mark">💰</div><div class="txt"><b>1.5% of every trade</b> puffs the mattress — the floor only rises</div></div>
+    <div class="row"><div class="mark">🤖</div><div class="txt"><b>Snipers pay 90% tax</b> cooling to 2.5% — bots fund your bed</div></div>
+    <div class="row"><div class="mark">🔒</div><div class="txt"><b>Liquidity locked forever</b> — no LP tokens, no withdraw, no rug</div></div>
+    <div class="row"><div class="mark">📈</div><div class="txt"><b>Slow supply release</b> — no early wall to dump on you</div></div>
+  </div>
+</div>
+
+<!-- CARD 4: CTA -->
+<div class="card" id="card4">
+  <div class="glow"></div>
+  <div class="rule top"></div><div class="rule bottom"></div>
+  <div class="brand">$MATTRESS · LAUNCH</div>
+  <div class="links">themattress.fun</div>
+  <div class="kicker">🛏️ The mattress is out of the bag</div>
+  <h1>The mattress drops<br><span class="green">on FOBO.</span></h1>
+  <div class="sub">Floor-backed. Sniper-taxed. Buyable from any chain.<br>Follow + turn on notifs. Sleep on it. 🛏️</div>
+  <div class="pills">
+    <div class="pill p-solid">themattress.fun</div>
+    <div class="pill p-ghost">$MATTRESS</div>
+    <div class="pill p-ghost">on FOBO</div>
+  </div>
+</div>
+
+<script>
+  window.show = (id) => {
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('on'));
+    document.getElementById(id).classList.add('on');
+    return true;
+  };
+  window.show('card1');
+</script>
+</body>
+</html>
