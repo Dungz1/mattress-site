@@ -6,9 +6,12 @@
   "launch": {
     "launchpad": "FOBO",
     "launchUrl": "https://fobo.fun",
-    "status": "announced",
-    "contractAddress": null,
-    "contractAddressNote": "published first on X at launch, then mirrored here"
+    "status": "live",
+    "launchedAt": "2026-11-15",
+    "contractAddress": "0xc825b0363ce5fea6e5afa77bf92c71eb098eacf3",
+    "chain": "Robinhood Chain",
+    "coinPage": "https://fobo.fun/?token=0xc825b0363ce5fea6e5afa77bf92c71eb098eacf3",
+    "verified": "name/symbol/supply/decimals checked on-chain at launch"
   },
   "mechanics": {
     "floor": {
